@@ -1,0 +1,100 @@
+This is test article project which developed in Laravel Framework 10.48.18
+
+Create Laravel Project
+
+composer create-project laravel/laravel techtest
+
+composer install to download dependencies in vendor folder
+
+Then use migration command to create article table structure in database folder
+
+php artisan make:migration create_articles_table --create=articles
+
+use php artisan migrate command to create table in database
+Article Model in app/Model folder
+
+php artisan make:seeder ArticlesTableSeeder 
+
+php artisan db:seed --class=ArticlesTableSeeder => seed database with data
+
+GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';
+
+Creare Controller
+
+php artisan make:controller ArticleController
+
+set permissions on storage folder
+
+php artisan key:generate
+
+
+import techtest.sql file on laravel project root directory
+
+
+
+
+
+Back-end access URL
+
+http://locahost/techtest/public/articles
+
+Display all articles and have option to show article details and can be edit or delete article
+
+Migration and Seeds of article tables
+
+Create ArticleController (CRUD operations)
+Article Model
+Article Resource
+
+
+Usage:
+
+GET /articles: get all articles in table
+GET /articles/{id}: Retrieve a specific article by ID.
+POST /articles: Create a new article.
+PUT /articles/{id}: Update an existing article.
+DELETE /articles/{id}: Delete an article.
+
+To use RDS
+
+Create EC2 instance, security group and create RDS Mysql database and connect with security group and then use credentials to connect from local machine and also Laravel has option to use it in .env or config/databsse.php file
+
+For AWS S3
+
+AWS_ACCESS_KEY_ID=your-access-key-id
+AWS_SECRET_ACCESS_KEY=your-secret-access-key
+AWS_DEFAULT_REGION=your-region
+AWS_BUCKET=your-bucket-name
+AWS_URL=https://your-bucket-name.s3.amazonaws.com
+
+and also use asw-sdk in Laravel and in filesystems use s3 disk key to add details and call in Controllere to uplaod on S3 bucket and can be managed
+we can use storage facade for file upload and delete by connect s3 key in Laravel
+
+$imageUrl = Storage::disk('s3')->url($article->image_path);
+
+We coulds use AWS lambda function to trigger like when any image upload in s3 bucket then destination to set action perform
+
+For RDS in .env and also can set in config/database.php
+
+DB_CONNECTION=mysql
+DB_HOST=your-rds-endpoint
+DB_PORT=3306
+DB_DATABASE=your-database-name
+DB_USERNAME=your-master-username
+DB_PASSWORD=your-master-password
+
+===================================================================
+
+Front-end
+
+http://locahost/techtest/public/home
+
+use api to get articles as json and assign to div
+
+GET /api/articles: Retrieve all articles.
+
+
+
+HTML Structure: home folder in public folder and index.html to display all articles
+JavaScript (app.js): Fetches data from the API and dynamically inserts it into the page.
+Sass (styles.scss): compile style.scss to create style.css for the page
